@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ quiz.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        .quiz-container {
+            background-color: #ffefd5;
+            border: 2px solid #ffa07a;
+            padding: 20px;
+            margin: 10px auto;
+            border-radius: 10px;
+            width: 50%;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .choices {
+            list-style: none;
+            padding: 0;
+        }
+        .choices li {
+            background-color: #ffe4e1;
+            border: 1px solid #ffa07a;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .choices li:hover {
+            background-color: #ffdab9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ quiz.title }}</h1>
+    <div class="quiz-container">
+        <form method="post" action="{% url 'submit_quiz' quiz.id %}">
+            {% csrf_token %}
+            {% for question in questions %}
+                <div class="question">
+                    <p>{{ question.question_text }}</p>
+                    <ul class="choices">
+                        <li><input type="radio" name="{{ question.id }}" value="1"> {{ question.choice1 }}</li>
+                        <li><input type="radio" name="{{ question.id }}" value="2"> {{ question.choice2 }}</li>
+                        <li><input type="radio" name="{{ question.id }}" value="3"> {{ question.choice3 }}</li>
+                        <li><input type="radio" name="{{ question.id }}" value="4"> {{ question.choice4 }}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter une agence
+    </title>
+    <style>
+        body {
+            font-family:sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c8dee9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color:white;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            /* Change label color here */
+            color: #1b1267;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size: larger;
+            font-weight: bold;
+
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            text-indent: 50px;
+            line-height: 2;
+        }
+   
+
+        button {
+            background-color:#2196F3;
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            position: absolute; 
+            bottom: -100px; 
+            right: 450px; 
+            font-size: 200;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        button:hover {
+            background-color: #7dc4f1;
+        }
+
+        .form-title {
+            background-color: #299be4;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-title">
+            <h1>Ajouter une agence</h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div>{{ field.label_tag }}</div>
+            <div>{{ field }}</div>
+            {% endfor %}
+            <button type="submit">Valider</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

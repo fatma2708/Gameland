@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa; /* Lighter background color */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        h1 {
+            color: #FF69B4; /* Pink color for heading */
+            margin-bottom: 20px;
+        }
+        .color-box {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            border: 2px solid #333;
+            background-color: {{ correct_color }}; /* Dynamic background color */
+        }
+        .game-info {
+            font-size: 18px;
+            color: #555; /* Dark gray for game info text */
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FF69B4; /* Pink color for button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #FF1493; /* Darker pink on hover */
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .play-again-link {
+            text-decoration: none;
+            color: #2E8B57;
+            font-weight: bold;
+            border: 2px solid #2E8B57;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .play-again-link:hover {
+            background-color: #2E8B57;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Guessing Game</h1>
+    <br>
+    <br>
+    <br>
+    <div class="color-box"></div>
+    <div class="game-info">
+        {% if not game_over %}
+            <form method="post">
+                {% csrf_token %}
+                <label for="color_guess">Guess the color name:</label>
+                <br>
+                <br>
+                <input type="text" id="color_guess" name="color_guess" placeholder="Enter color name" value="{{ user_guess }}">
+                <br>
+                <br>
+                <input type="hidden" name="correct_color" value="{{ correct_color }}">
+                <button type="submit">Submit Guess</button>
+            </form>
+        {% else %}
+            <p class="result" style="color: {{ message_color }};">{{ message }}</p>
+            <a href="{% url 'color_game' %}" class="play-again-link">Play Again</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmer la suppression</title>
+    <style>
+        body {
+            font-family: 'Varela Round', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        p {
+            text-align: center;
+            font-size: 16px;
+            font-weight: light;
+            color: red;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        button {
+            background-color: #299be4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #7dc4f1;
+        }
+
+        button,
+        a.button {
+            background-color: #299be4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a.button:hover {
+            background-color: #7dc4f1;
+        }
+        .form-title {
+            background-color: #299be4;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-title">
+        <h2>Confirmer la suppression ?</h2>
+    </div>
+        <p>Êtes-vous sûr de vouloir supprimer cet utilisateur?</p>
+        <table>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Nom de l'agence</th>
+            </tr>
+            <tr>
+                <td>{{ user_info.Name_user }}</td>
+                <td>{{ user_info.Lastname_user }}</td>
+                <td>{{ user_info.Name_agence }}</td>
+            </tr>
+        </table>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmer</button>
+            <a href="{% url 'user_info_table' %}"class="button">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>

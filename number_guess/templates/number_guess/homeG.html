@@ -1,0 +1,51 @@
+<!-- number_guess/templates/number_guess/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #f6f6f6;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        label {
+            font-size: 18px;
+            color: #333;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ff6f61;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Number Guessing Game!</h1>
+    <form method="post" action="{% url 'start_game' %}">
+        {% csrf_token %}
+        <label for="player_name">Enter your name:</label>
+        <br>
+        <input type="text" id="player_name" name="player_name" required>
+        <br>
+        <button type="submit">Start Game</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!-- number_guess/templates/number_guess/play.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game - Play</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #f6f6f6;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        label {
+            font-size: 18px;
+            color: #333;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ff6f61;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .number-line {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number!</h1>
+    <p>Can you guess the secret number?</p>
+    <form method="post" action="{% url 'play_game' game_session.id %}">
+        {% csrf_token %}
+        <label for="guess">Enter your guess (between 1 and 100):</label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <input type="number" id="guess" name="guess" min="1" max="100" required>
+        <br>
+        <br>
+        <br>
+        
+        <button type="submit">Submit Guess</button>
+    </form>
+    {% if feedback %}
+    <p>{{ feedback }}</p>
+    {% endif %}
+</body>
+</html>

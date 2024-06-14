@@ -1,0 +1,28 @@
+<!-- number_guess/templates/number_guess/win.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #f6f6f6;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Congratulations, {{ game_session.player_name }}!</h1>
+    <p>You guessed the number <strong>{{ game_session.target_number }}</strong> in <strong>{{ game_session.attempts }}</strong> attempts.</p>
+</body>
+</html>
